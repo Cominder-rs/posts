@@ -1,0 +1,46 @@
+syntax = "proto3";
+package posts;
+import "google/protobuf/empty.proto";
+
+service PostsV1 {
+  rpc CreatePost (NewPost) returns (PostId) {}
+  rpc GetPosts (google.protobuf.Empty) returns (Posts) {}
+}
+
+message NewPost {
+  string title = 1;
+  string short_description = 2;
+  string detailed_description = 3;
+  repeated string contacts = 4;
+  Category category = 5;
+}
+
+message Post {
+  string title = 1;
+  string short_description = 2;
+  string detailed_description = 3;
+  repeated string contacts = 4;
+  string username = 5;
+  string lastname = 6;
+  string firstname = 7;
+  Category category = 8;
+}
+
+message PostId {
+  int64 id = 1;
+}
+
+message Posts {
+  repeated Post posts = 1;
+}
+
+enum Category {
+  IT = 0;
+  ART = 1;
+  SPORT = 2;
+  CYBERSPORT = 3;
+  STARTUPS = 4;
+  DANCING = 5;
+  MUSIC = 6;
+  VOLONTEERING = 7;
+}
